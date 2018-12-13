@@ -1,8 +1,0 @@
-<?php
-
-/**
- * @file
- * Code for the Supplier Framework - Base feature.
- */
-
-include_once 'supplier_framework_base.features.inc';

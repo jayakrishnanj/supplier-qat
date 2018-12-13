@@ -244,21 +244,7 @@
  *   );
  * @endcode
  */
-$databases = array (
-  'default' => 
-  array (
-    'default' => 
-    array (
-      'database' => 'supplier',
-      'username' => 'root',
-      'password' => 'root',
-      'host' => 'localhost',
-      'port' => '',
-      'driver' => 'mysql',
-      'prefix' => '',
-    ),
-  ),
-);
+$databases = array();
 
 /**
  * Access control for update.php script.
@@ -290,7 +276,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = 'yfga_rMMxSbE6o6AlBjqLzNNoxQE16VTVDwX4tzN1Uk';
+$drupal_hash_salt = '';
 
 /**
  * Base URL (optional).
@@ -493,23 +479,6 @@ ini_set('session.cookie_lifetime', 2000000);
 # $conf['block_cache_bypass_node_grants'] = TRUE;
 
 /**
- * Expiration of cache_form entries:
- *
- * Drupal's Form API stores details of forms in cache_form and these entries are
- * kept for at least 6 hours by default. Expired entries are cleared by cron.
- * Busy sites can encounter problems with the cache_form table becoming very
- * large. It's possible to mitigate this by setting a shorter expiration for
- * cached forms. In some cases it may be desirable to set a longer cache
- * expiration, for example to prolong cache_form entries for Ajax forms in
- * cached HTML.
- *
- * @see form_set_cache()
- * @see system_cron()
- * @see ajax_get_form()
- */
-# $conf['form_cache_expiration'] = 21600;
-
-/**
  * String overrides:
  *
  * To override specific strings on your site with or without enabling the Locale
@@ -659,3 +628,12 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * @see drupal_clean_css_identifier()
  */
 # $conf['allow_css_double_underscores'] = TRUE;
+
+
+// On Acquia Cloud, this include file configures Drupal to use the correct
+// database in each site environment (Dev, Stage, or Prod). To use this
+// settings.php for development on your local workstation, set $db_url
+// (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
+if (file_exists('/var/www/site-php')) {
+  require('/var/www/site-php/eejayabal/eejayabal-settings.inc');
+}
