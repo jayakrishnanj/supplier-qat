@@ -1,0 +1,13 @@
+name = Ctanywhere
+description = Helps site admin to change text anywhere in the site.
+core = 7.x
+configure = admin/ctanywhere
+
+scripts[] = js/ctanywhere.js
+
+; Information added by Drupal.org packaging script on 2017-09-19
+version = "7.x-1.0"
+core = "7.x"
+project = "ctanywhere"
+datestamp = "1505819952"
+

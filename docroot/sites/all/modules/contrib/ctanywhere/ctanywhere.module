@@ -1,0 +1,125 @@
+<?php
+
+/**
+ * @file
+ * Used to allow site admin to change text anywhere in the site.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function ctanywhere_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case 'admin/help#ctanywhere':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module allows site admin toto change text anywhere in the site.') . '</p>';
+      $output .= '<p>' . t('Site admin must add url / pattern, text to select and text to replace.') . '</p>';
+      $output .= '<p>' . t('Site admin can <a href="@manage-ctanywhere">Manage change text anywhere</a>..', array('@manage-ctanywhere' => url('admin/ctanywhere'))) . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function ctanywhere_permission() {
+  return array(
+    'administer ctanywhere' => array(
+      'title' => t('Administer change text anywehre'),
+      'description' => t('Change text anywehre.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function ctanywhere_menu() {
+  $items['admin/ctanywhere'] = array(
+    'title' => 'Change text anywhere',
+    'description' => 'Shows list of change text anywhere configurations.',
+    'page callback' => 'ctanywhere_listing',
+    'access arguments' => array('administer ctanywhere'),
+    'file' => 'ctanywhere.admin.inc',
+  );
+  $items['admin/ctanywhere/add'] = array(
+    'title' => 'Add change text anywhere configuration',
+    'description' => 'Add change text anywhere configuration form.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ctanywhere_form'),
+    'access arguments' => array('administer ctanywhere'),
+    'type' => MENU_LOCAL_ACTION,
+    'file' => 'ctanywhere.admin.inc',
+  );
+  $items['admin/ctanywhere/%/edit'] = array(
+    'title' => 'Edit change text anywhere configuration',
+    'description' => 'Edit change text anywhere configuration form.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ctanywhere_form', 2, 3),
+    'access arguments' => array('administer ctanywhere'),
+    'file' => 'ctanywhere.admin.inc',
+  );
+  $items['admin/ctanywhere/%/delete'] = array(
+    'title' => 'Delete ctanywhere settings',
+    'description' => 'Delete ctanywhere settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ctanywhere_delete_confirm', 2),
+    'access arguments' => array('administer ctanywhere'),
+    'file' => 'ctanywhere.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_init().
+ */
+function ctanywhere_init() {
+  $current_path = current_path();
+  if (!strpos($current_path, 'ajax') !== FALSE) {
+    $ctanywhere_records = db_select('ctanywhere', 'cta')
+      ->fields('cta', array('url', 'text_to_find', 'text_to_replace'));
+    $or = ctanywhere_getorcondition();
+    $ctanywhere_records->condition($or);
+    $ctanywhere = $ctanywhere_records->execute()->fetchAll();
+    $return_ct = array();
+    if (count($ctanywhere) > 0) {
+      foreach ($ctanywhere as $value) {
+        $return_ct[$value->text_to_find] = $value->text_to_replace;
+      }
+    }
+    drupal_add_js(array('ctanywhere' => array('ctj' => $return_ct)),
+      array('type' => 'setting'));
+  }
+}
+
+/**
+ * Function to delete ctanywhere setting.
+ *
+ * @param int $id
+ *   Ctanywhere id to be deleted.
+ */
+function ctanywhere_delete($id) {
+  db_delete('ctanywhere')
+    ->condition('id', $id)
+    ->execute();
+}
+
+/**
+ * Function to return query or condition based on url.
+ *
+ * @return DatabaseCondition
+ *   This variable contains the or condition based on url.
+ */
+function ctanywhere_getorcondition() {
+  $menu_item = menu_get_item();
+  $path = current_path();
+  $raw_path = $menu_item['path'];
+  $path_alias = drupal_lookup_path('alias', $path);
+  $or = db_or();
+  $or->condition('cta.url', $raw_path, '=');
+  $or->condition('cta.url', $path, '=');
+  $or->condition('cta.url', $path_alias, '=');
+  return $or;
+}
