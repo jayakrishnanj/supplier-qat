@@ -1,0 +1,12 @@
+{
+  "require": {
+    "drush/drush": "^9.5"
+  },
+  "extra": {
+    "installer-paths": {
+      "docroot": [
+        "type:drupal-core"
+      ]
+    }
+  }
+}
