@@ -477,6 +477,23 @@ function supplier_framework_base_field_default_field_bases() {
     'type' => 'fivestar',
   );
 
+  // Exported field_base: 'field_solutioning'.
+  $field_bases['field_solutioning'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_solutioning',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'fivestar',
+    'settings' => array(
+      'axis' => 'vote',
+    ),
+    'translatable' => 0,
+    'type' => 'fivestar',
+  );
+
   // Exported field_base: 'field_staffing_sheet_link'.
   $field_bases['field_staffing_sheet_link'] = array(
     'active' => 1,

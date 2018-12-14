@@ -1879,6 +1879,61 @@ Any feedback to the candidate?',
   );
 
   // Exported field_instance:
+  // 'node-supplier_resource_feedback-field_solutioning'.
+  $field_instances['node-supplier_resource_feedback-field_solutioning'] = array(
+    'bundle' => 'supplier_resource_feedback',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'fivestar',
+        'settings' => array(
+          'expose' => TRUE,
+          'style' => 'average',
+          'text' => 'average',
+          'widget' => array(
+            'fivestar_widget' => NULL,
+          ),
+        ),
+        'type' => 'fivestar_formatter_default',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_solutioning',
+    'label' => 'Solutioning',
+    'required' => 1,
+    'settings' => array(
+      'allow_clear' => 0,
+      'allow_halfstar' => 1,
+      'allow_ownvote' => 0,
+      'allow_revote' => 0,
+      'stars' => 5,
+      'target' => 'none',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'fivestar',
+      'settings' => array(
+        'widget' => array(
+          'fivestar_widget' => 'sites/all/modules/contrib/fivestar/widgets/oxygen/oxygen.css',
+        ),
+      ),
+      'type' => 'stars',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
   // 'node-supplier_resource_feedback-field_supplier_res_fb_project'.
   $field_instances['node-supplier_resource_feedback-field_supplier_res_fb_project'] = array(
     'bundle' => 'supplier_resource_feedback',
@@ -2015,7 +2070,7 @@ Any feedback to the candidate?',
     ),
     'entity_type' => 'node',
     'field_name' => 'field_technical_skills',
-    'label' => 'Technical Skills',
+    'label' => 'Drupal Coding Skills',
     'required' => 1,
     'settings' => array(
       'allow_clear' => 0,
@@ -2031,7 +2086,7 @@ Any feedback to the candidate?',
       'module' => 'fivestar',
       'settings' => array(
         'widget' => array(
-          'fivestar_widget' => 'sites/all/modules/fivestar/widgets/oxygen/oxygen.css',
+          'fivestar_widget' => 'sites/all/modules/contrib/fivestar/widgets/oxygen/oxygen.css',
         ),
       ),
       'type' => 'stars',
@@ -2153,6 +2208,7 @@ Any feedback to the candidate?',
   t('Does the resource do a good job in explaining his thoughts, on calls, on tickets? Can he/she articulate their questions clearly?');
   t('Does the resource do the amount of work that justify the hours logged? Is the resource honest about his availability? Do the timesheets match the actual hours spent? Do the expense reports indicate the actual amounts spent?');
   t('Does the resource have good attention to detail? Does he ask the right questions and get this clarified? Does he ensure small things in tickets are not missed out?');
+  t('Drupal Coding Skills');
   t('Email Address');
   t('End Date');
   t('Estimation');
@@ -2182,6 +2238,7 @@ Any feedback to the candidate?',
   t('Project(s) Involved');
   t('Resource Availability');
   t('Resource Name');
+  t('Solutioning');
   t('Staffing Sheet Link');
   t('Start Date');
   t('Summary of your evaluation. 
@@ -2196,7 +2253,6 @@ Any feedback to the candidate?');
   t('Supplier Resource Role');
   t('Supplier Resource(s) Involved');
   t('Supplier(s) Involved');
-  t('Technical Skills');
   t('The above feedback does not contain any Acquia confidential informationand can be shared with the supplier leadership.');
   t('Turn around time during staffing');
   t('Velocity');

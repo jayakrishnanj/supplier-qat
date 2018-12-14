@@ -118,6 +118,7 @@ function supplier_framework_base_field_group_info() {
     'children' => array(
       0 => 'field_technical_skills',
       1 => 'field_velocity',
+      2 => 'field_solutioning',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
