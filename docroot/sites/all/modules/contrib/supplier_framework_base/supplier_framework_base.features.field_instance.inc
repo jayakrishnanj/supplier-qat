@@ -349,7 +349,7 @@ function supplier_framework_base_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => -2,
+      'weight' => 2,
     ),
   );
 
@@ -389,13 +389,14 @@ function supplier_framework_base_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -1,
+      'weight' => 3,
     ),
   );
 
-  // Exported field_instance: 'node-project-field_project_manager'.
-  $field_instances['node-project-field_project_manager'] = array(
+  // Exported field_instance: 'node-project-field_project_manager_s_'.
+  $field_instances['node-project-field_project_manager_s_'] = array(
     'bundle' => 'project',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -417,21 +418,24 @@ function supplier_framework_base_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_project_manager',
-    'label' => 'Project Manager',
+    'field_name' => 'field_project_manager_s_',
+    'label' => 'Project Manager(s)',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'inline_entity_form',
+      'module' => 'entityreference',
       'settings' => array(
         'fields' => array(),
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
         'type_settings' => array(),
       ),
-      'type' => 'inline_entity_form',
-      'weight' => 0,
+      'type' => 'entityreference_autocomplete',
+      'weight' => 4,
     ),
   );
 
@@ -476,7 +480,7 @@ function supplier_framework_base_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => -3,
+      'weight' => 1,
     ),
   );
 
@@ -1560,6 +1564,50 @@ Any feedback to the candidate?',
   );
 
   // Exported field_instance:
+  // 'node-supplier_resource_evaluation_int-field_the_above_feedback_does_no'.
+  $field_instances['node-supplier_resource_evaluation_int-field_the_above_feedback_does_no'] = array(
+    'bundle' => 'supplier_resource_evaluation_int',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_the_above_feedback_does_no',
+    'label' => 'The above feedback does not contain any Acquia confidential informationand can be shared with the supplier leadership.',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance:
   // 'node-supplier_resource_feedback-field_additional_notes'.
   $field_instances['node-supplier_resource_feedback-field_additional_notes'] = array(
     'bundle' => 'supplier_resource_feedback',
@@ -2234,7 +2282,7 @@ Any feedback to the candidate?',
   t('Overall Rating for supplier on this project');
   t('Proactiveness and Deligence in staffing');
   t('Project');
-  t('Project Manager');
+  t('Project Manager(s)');
   t('Project(s) Involved');
   t('Resource Availability');
   t('Resource Name');
