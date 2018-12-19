@@ -102,7 +102,7 @@ function supplier_framework_base_field_default_field_instances() {
       'module' => 'fivestar',
       'settings' => array(
         'widget' => array(
-          'fivestar_widget' => 'sites/all/modules/contrib/fivestar/widgets/oxygen/oxygen.css',
+          'fivestar_widget' => 'sites/all/modules/contrib/fivestar/widgets/flames/flames.css',
         ),
       ),
       'type' => 'stars',
