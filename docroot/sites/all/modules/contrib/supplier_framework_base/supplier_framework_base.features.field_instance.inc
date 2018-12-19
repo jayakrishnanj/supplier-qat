@@ -1932,7 +1932,7 @@ Any feedback to the candidate?',
     'bundle' => 'supplier_resource_feedback',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'How good was the resource in being able to figure out solutions to problems, in being able to translate requirements into technical architecture?',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2262,6 +2262,7 @@ Any feedback to the candidate?',
   t('Estimation');
   t('Handling Scope');
   t('How fast does the resource get stuff done?');
+  t('How good was the resource in being able to figure out solutions to problems, in being able to translate requirements into technical architecture?');
   t('How good was the resource with his technical knowledge and know-how? If TA, does the resource do good job at grooming and ticket triaging?');
   t('How quick was the supplier in responding to the staffing requests? Did the supplier prioritize and expedit our request?');
   t('In Budget');
