@@ -216,6 +216,7 @@ function supplier_framework_base_field_default_field_instances() {
   // Exported field_instance: 'node-incident_log-field_supplier_s_involved'.
   $field_instances['node-incident_log-field_supplier_s_involved'] = array(
     'bundle' => 'incident_log',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -245,7 +246,7 @@ function supplier_framework_base_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'inline_entity_form',
+      'module' => 'options',
       'settings' => array(
         'fields' => array(),
         'type_settings' => array(
@@ -259,7 +260,7 @@ function supplier_framework_base_field_default_field_instances() {
           'override_labels' => 0,
         ),
       ),
-      'type' => 'inline_entity_form',
+      'type' => 'options_select',
       'weight' => 1,
     ),
   );
