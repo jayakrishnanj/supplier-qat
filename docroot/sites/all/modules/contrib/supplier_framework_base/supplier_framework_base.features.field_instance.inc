@@ -1612,13 +1612,9 @@ Any feedback to the candidate?',
   // 'node-supplier_resource_feedback-field_additional_notes'.
   $field_instances['node-supplier_resource_feedback-field_additional_notes'] = array(
     'bundle' => 'supplier_resource_feedback',
-    'default_value' => array(
-      0 => array(
-        'value' => 'Describe your overall experience with the resource as a PM on this project.',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Describe your overall experience with the resource as a PM on this project.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2248,6 +2244,7 @@ Any feedback to the candidate?',
   t('Attention to detail');
   t('Availability');
   t('Communication');
+  t('Describe your overall experience with the resource as a PM on this project.');
   t('Describe your overall experience with the supplier as a PM on this project.');
   t('Did the supplier do a good job in defining scope, preventing scope creep, handling Change Requests, etc');
   t('Did the supplier do their due deligence and come up with the right estimates? Were the estimates close to our estimates? Did they follow our estimation process? Did they do the right POCs to increase confidence? Did they call out the right assumptions? Did they ask the right questions?');
