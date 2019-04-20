@@ -1,0 +1,622 @@
+<?php
+
+/**
+ * @file
+ * supplier_framework_base.views_default.inc
+ */
+
+/**
+ * Implements hook_views_default_views().
+ */
+function supplier_framework_base_views_default_views() {
+  $export = array();
+
+  $view = new view();
+  $view->name = 'supplier_feedback_aggregator';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Supplier feedback aggregator';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Notes from Previous Feedback';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: AVG(Content: Turn around time during staffing) */
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['id'] = 'field_turn_around_time_during_st';
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['table'] = 'field_data_field_turn_around_time_during_st';
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['field'] = 'field_turn_around_time_during_st';
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['empty'] = '0';
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_turn_around_time_during_st']['group_column'] = 'rating';
+  /* Field: AVG(Content: Resource Availability) */
+  $handler->display->display_options['fields']['field_resource_availability']['id'] = 'field_resource_availability';
+  $handler->display->display_options['fields']['field_resource_availability']['table'] = 'field_data_field_resource_availability';
+  $handler->display->display_options['fields']['field_resource_availability']['field'] = 'field_resource_availability';
+  $handler->display->display_options['fields']['field_resource_availability']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_resource_availability']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_resource_availability']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_resource_availability']['group_column'] = 'rating';
+  /* Field: AVG(Content: Proactiveness and Deligence in staffing) */
+  $handler->display->display_options['fields']['field_proactiveness_and_deligenc']['id'] = 'field_proactiveness_and_deligenc';
+  $handler->display->display_options['fields']['field_proactiveness_and_deligenc']['table'] = 'field_data_field_proactiveness_and_deligenc';
+  $handler->display->display_options['fields']['field_proactiveness_and_deligenc']['field'] = 'field_proactiveness_and_deligenc';
+  $handler->display->display_options['fields']['field_proactiveness_and_deligenc']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_proactiveness_and_deligenc']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_proactiveness_and_deligenc']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_proactiveness_and_deligenc']['group_column'] = 'rating';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'supplier_feedback' => 'supplier_feedback',
+  );
+
+  /* Display: T & M */
+  $handler = $view->new_display('block', 'T & M', 'block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'T & M';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Supplier (field_supplier_feedback_supplier) */
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['id'] = 'field_supplier_feedback_supplier_target_id';
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['table'] = 'field_data_field_supplier_feedback_supplier';
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['field'] = 'field_supplier_feedback_supplier_target_id';
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_supplier_feedback_supplier_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['block_description'] = 'T & M';
+
+  /* Display: Supplier-led project */
+  $handler = $view->new_display('attachment', 'Supplier-led project', 'attachment_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Supplier-led project';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: AVG(Content: Estimation) */
+  $handler->display->display_options['fields']['field_estimation']['id'] = 'field_estimation';
+  $handler->display->display_options['fields']['field_estimation']['table'] = 'field_data_field_estimation';
+  $handler->display->display_options['fields']['field_estimation']['field'] = 'field_estimation';
+  $handler->display->display_options['fields']['field_estimation']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_estimation']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_estimation']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_estimation']['group_column'] = 'rating';
+  /* Field: AVG(Content: Handling Scope) */
+  $handler->display->display_options['fields']['field_handling_scope']['id'] = 'field_handling_scope';
+  $handler->display->display_options['fields']['field_handling_scope']['table'] = 'field_data_field_handling_scope';
+  $handler->display->display_options['fields']['field_handling_scope']['field'] = 'field_handling_scope';
+  $handler->display->display_options['fields']['field_handling_scope']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_handling_scope']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_handling_scope']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_handling_scope']['group_column'] = 'rating';
+  /* Field: AVG(Content: In Budget) */
+  $handler->display->display_options['fields']['field_in_budget']['id'] = 'field_in_budget';
+  $handler->display->display_options['fields']['field_in_budget']['table'] = 'field_data_field_in_budget';
+  $handler->display->display_options['fields']['field_in_budget']['field'] = 'field_in_budget';
+  $handler->display->display_options['fields']['field_in_budget']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_in_budget']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_in_budget']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_in_budget']['group_column'] = 'rating';
+  /* Field: AVG(Content: In Time) */
+  $handler->display->display_options['fields']['field_in_time']['id'] = 'field_in_time';
+  $handler->display->display_options['fields']['field_in_time']['table'] = 'field_data_field_in_time';
+  $handler->display->display_options['fields']['field_in_time']['field'] = 'field_in_time';
+  $handler->display->display_options['fields']['field_in_time']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_in_time']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_in_time']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_in_time']['group_column'] = 'rating';
+  $handler->display->display_options['displays'] = array(
+    'block' => 'block',
+    'default' => 0,
+  );
+  $handler->display->display_options['attachment_position'] = 'after';
+
+  /* Display: Overall */
+  $handler = $view->new_display('attachment', 'Overall', 'attachment_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Overall';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: AVG(Content: Overall Rating for supplier on this project) */
+  $handler->display->display_options['fields']['field_overall_rating_for_supplie']['id'] = 'field_overall_rating_for_supplie';
+  $handler->display->display_options['fields']['field_overall_rating_for_supplie']['table'] = 'field_data_field_overall_rating_for_supplie';
+  $handler->display->display_options['fields']['field_overall_rating_for_supplie']['field'] = 'field_overall_rating_for_supplie';
+  $handler->display->display_options['fields']['field_overall_rating_for_supplie']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_overall_rating_for_supplie']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_overall_rating_for_supplie']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_overall_rating_for_supplie']['group_column'] = 'rating';
+  $handler->display->display_options['displays'] = array(
+    'block' => 'block',
+    'default' => 0,
+  );
+  $handler->display->display_options['attachment_position'] = 'after';
+
+  /* Display: Attachment 3 */
+  $handler = $view->new_display('attachment', 'Attachment 3', 'attachment_3');
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Project */
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['id'] = 'field_supplier_feedback_project';
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['table'] = 'field_data_field_supplier_feedback_project';
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['field'] = 'field_supplier_feedback_project';
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 0,
+  );
+  /* Field: Content: Additional Notes */
+  $handler->display->display_options['fields']['field_additional_notes']['id'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['table'] = 'field_data_field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['field'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['label'] = '';
+  $handler->display->display_options['fields']['field_additional_notes']['element_label_colon'] = FALSE;
+  $handler->display->display_options['displays'] = array(
+    'default' => 0,
+    'block' => 0,
+    'block_1' => 0,
+  );
+  $handler->display->display_options['attachment_position'] = 'after';
+  $handler->display->display_options['inherit_arguments'] = FALSE;
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Project */
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['id'] = 'field_supplier_feedback_project';
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['table'] = 'field_data_field_supplier_feedback_project';
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['field'] = 'field_supplier_feedback_project';
+  $handler->display->display_options['fields']['field_supplier_feedback_project']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 0,
+  );
+  /* Field: Content: Additional Notes */
+  $handler->display->display_options['fields']['field_additional_notes']['id'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['table'] = 'field_data_field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['field'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['label'] = '';
+  $handler->display->display_options['fields']['field_additional_notes']['element_label_colon'] = FALSE;
+
+  /* Display: Block 2 */
+  $handler = $view->new_display('block', 'Block 2', 'block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Escalation / Incident logs involving the suppliers resources';
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Project(s) Involved */
+  $handler->display->display_options['fields']['field_project_s_involved']['id'] = 'field_project_s_involved';
+  $handler->display->display_options['fields']['field_project_s_involved']['table'] = 'field_data_field_project_s_involved';
+  $handler->display->display_options['fields']['field_project_s_involved']['field'] = 'field_project_s_involved';
+  $handler->display->display_options['fields']['field_project_s_involved']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_project_s_involved']['delta_offset'] = '0';
+  /* Field: Content: Supplier Resource(s) Involved */
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['id'] = 'field_supplier_resource_s_involv';
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['table'] = 'field_data_field_supplier_resource_s_involv';
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['field'] = 'field_supplier_resource_s_involv';
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['delta_offset'] = '0';
+  /* Field: Content: Incident Severity */
+  $handler->display->display_options['fields']['field_incident_severity']['id'] = 'field_incident_severity';
+  $handler->display->display_options['fields']['field_incident_severity']['table'] = 'field_data_field_incident_severity';
+  $handler->display->display_options['fields']['field_incident_severity']['field'] = 'field_incident_severity';
+  $handler->display->display_options['fields']['field_incident_severity']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_incident_severity']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_incident_severity']['group_column'] = 'entity_id';
+  /* Field: Content: Additional Notes */
+  $handler->display->display_options['fields']['field_additional_notes']['id'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['table'] = 'field_data_field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['field'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['label'] = '';
+  $handler->display->display_options['fields']['field_additional_notes']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Supplier(s) Involved (field_supplier_s_involved) */
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['id'] = 'field_supplier_s_involved_target_id';
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['table'] = 'field_data_field_supplier_s_involved';
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['field'] = 'field_supplier_s_involved_target_id';
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_supplier_s_involved_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'incident_log' => 'incident_log',
+  );
+  $export['supplier_feedback_aggregator'] = $view;
+
+  $view = new view();
+  $view->name = 'supplier_resource_feedback';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Supplier Resource Feedback';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Supplier Resource Feedback';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: AVG(Content: Drupal Coding Skills) */
+  $handler->display->display_options['fields']['field_technical_skills']['id'] = 'field_technical_skills';
+  $handler->display->display_options['fields']['field_technical_skills']['table'] = 'field_data_field_technical_skills';
+  $handler->display->display_options['fields']['field_technical_skills']['field'] = 'field_technical_skills';
+  $handler->display->display_options['fields']['field_technical_skills']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_technical_skills']['label'] = 'Technical Skills';
+  $handler->display->display_options['fields']['field_technical_skills']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_technical_skills']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_technical_skills']['group_column'] = 'rating';
+  /* Field: AVG(Content: Velocity) */
+  $handler->display->display_options['fields']['field_velocity']['id'] = 'field_velocity';
+  $handler->display->display_options['fields']['field_velocity']['table'] = 'field_data_field_velocity';
+  $handler->display->display_options['fields']['field_velocity']['field'] = 'field_velocity';
+  $handler->display->display_options['fields']['field_velocity']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_velocity']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_velocity']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_velocity']['group_column'] = 'rating';
+  /* Contextual filter: Content: Supplier Resource (field_supplier_res_fb_resource) */
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['id'] = 'field_supplier_res_fb_resource_target_id';
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['table'] = 'field_data_field_supplier_res_fb_resource';
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['field'] = 'field_supplier_res_fb_resource_target_id';
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_supplier_res_fb_resource_target_id']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'supplier_resource_feedback' => 'supplier_resource_feedback',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Technical';
+
+  /* Display: Non Technical */
+  $handler = $view->new_display('attachment', 'Non Technical', 'attachment_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Non Technical';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: AVG(Content: Attention to detail) */
+  $handler->display->display_options['fields']['field_attention_to_detail']['id'] = 'field_attention_to_detail';
+  $handler->display->display_options['fields']['field_attention_to_detail']['table'] = 'field_data_field_attention_to_detail';
+  $handler->display->display_options['fields']['field_attention_to_detail']['field'] = 'field_attention_to_detail';
+  $handler->display->display_options['fields']['field_attention_to_detail']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_attention_to_detail']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_attention_to_detail']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_attention_to_detail']['group_column'] = 'rating';
+  /* Field: AVG(Content: Integrity) */
+  $handler->display->display_options['fields']['field_integrity']['id'] = 'field_integrity';
+  $handler->display->display_options['fields']['field_integrity']['table'] = 'field_data_field_integrity';
+  $handler->display->display_options['fields']['field_integrity']['field'] = 'field_integrity';
+  $handler->display->display_options['fields']['field_integrity']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_integrity']['label'] = '#DoTheRightThing';
+  $handler->display->display_options['fields']['field_integrity']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_integrity']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_integrity']['group_column'] = 'rating';
+  /* Field: AVG(Content: Communication) */
+  $handler->display->display_options['fields']['field_communication']['id'] = 'field_communication';
+  $handler->display->display_options['fields']['field_communication']['table'] = 'field_data_field_communication';
+  $handler->display->display_options['fields']['field_communication']['field'] = 'field_communication';
+  $handler->display->display_options['fields']['field_communication']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_communication']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_communication']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_communication']['group_column'] = 'rating';
+  /* Field: AVG(Content: Availability) */
+  $handler->display->display_options['fields']['field_availability_1']['id'] = 'field_availability_1';
+  $handler->display->display_options['fields']['field_availability_1']['table'] = 'field_data_field_availability';
+  $handler->display->display_options['fields']['field_availability_1']['field'] = 'field_availability';
+  $handler->display->display_options['fields']['field_availability_1']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_availability_1']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_availability_1']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_availability_1']['group_column'] = 'rating';
+  $handler->display->display_options['displays'] = array(
+    'block' => 'block',
+    'default' => 0,
+  );
+  $handler->display->display_options['attachment_position'] = 'after';
+
+  /* Display: Overall */
+  $handler = $view->new_display('attachment', 'Overall', 'attachment_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Overall';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: AVG(Content: Overall Rating for resource on this project) */
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['id'] = 'field_overall_rating_for_resourc';
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['table'] = 'field_data_field_overall_rating_for_resourc';
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['field'] = 'field_overall_rating_for_resourc';
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['group_type'] = 'avg';
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['label'] = 'Overall ';
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  $handler->display->display_options['fields']['field_overall_rating_for_resourc']['group_column'] = 'rating';
+  $handler->display->display_options['displays'] = array(
+    'block' => 'block',
+    'default' => 0,
+  );
+  $handler->display->display_options['attachment_position'] = 'after';
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Notes from Previous Feedback';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Additional Notes */
+  $handler->display->display_options['fields']['field_additional_notes']['id'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['table'] = 'field_data_field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['field'] = 'field_additional_notes';
+
+  /* Display: Block 2 */
+  $handler = $view->new_display('block', 'Block 2', 'block_2');
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Project(s) Involved */
+  $handler->display->display_options['fields']['field_project_s_involved']['id'] = 'field_project_s_involved';
+  $handler->display->display_options['fields']['field_project_s_involved']['table'] = 'field_data_field_project_s_involved';
+  $handler->display->display_options['fields']['field_project_s_involved']['field'] = 'field_project_s_involved';
+  $handler->display->display_options['fields']['field_project_s_involved']['label'] = 'Project';
+  $handler->display->display_options['fields']['field_project_s_involved']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_project_s_involved']['delta_offset'] = '0';
+  /* Field: Content: Supplier Resource(s) Involved */
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['id'] = 'field_supplier_resource_s_involv';
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['table'] = 'field_data_field_supplier_resource_s_involv';
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['field'] = 'field_supplier_resource_s_involv';
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['settings'] = array(
+    'bypass_access' => 0,
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_supplier_resource_s_involv']['delta_offset'] = '0';
+  /* Field: Content: Incident Severity */
+  $handler->display->display_options['fields']['field_incident_severity']['id'] = 'field_incident_severity';
+  $handler->display->display_options['fields']['field_incident_severity']['table'] = 'field_data_field_incident_severity';
+  $handler->display->display_options['fields']['field_incident_severity']['field'] = 'field_incident_severity';
+  $handler->display->display_options['fields']['field_incident_severity']['click_sort_column'] = 'rating';
+  $handler->display->display_options['fields']['field_incident_severity']['type'] = 'fivestar_formatter_rating';
+  $handler->display->display_options['fields']['field_incident_severity']['settings'] = array(
+    'widget' => array(
+      'fivestar_widget' => 'default',
+    ),
+    'expose' => 1,
+    'style' => 'average',
+    'text' => 'average',
+  );
+  /* Field: Content: Additional Notes */
+  $handler->display->display_options['fields']['field_additional_notes']['id'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['table'] = 'field_data_field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['field'] = 'field_additional_notes';
+  $handler->display->display_options['fields']['field_additional_notes']['label'] = '';
+  $handler->display->display_options['fields']['field_additional_notes']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Supplier Resource(s) Involved (field_supplier_resource_s_involv) */
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['id'] = 'field_supplier_resource_s_involv_target_id';
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['table'] = 'field_data_field_supplier_resource_s_involv';
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['field'] = 'field_supplier_resource_s_involv_target_id';
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_supplier_resource_s_involv_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'incident_log' => 'incident_log',
+  );
+  $export['supplier_resource_feedback'] = $view;
+
+  return $export;
+}

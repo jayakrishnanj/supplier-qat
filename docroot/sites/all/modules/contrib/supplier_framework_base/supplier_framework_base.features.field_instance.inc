@@ -394,6 +394,48 @@ function supplier_framework_base_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-project-field_project_manager'.
+  $field_instances['node-project-field_project_manager'] = array(
+    'bundle' => 'project',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'bypass_access' => FALSE,
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_project_manager',
+    'label' => 'Project Manager',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(),
+      ),
+      'type' => 'inline_entity_form',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'node-project-field_project_manager_s_'.
   $field_instances['node-project-field_project_manager_s_'] = array(
     'bundle' => 'project',
@@ -1391,7 +1433,7 @@ Any feedback to the candidate?',
     'label' => 'Additional Notes',
     'required' => 1,
     'settings' => array(
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -2281,6 +2323,7 @@ Any feedback to the candidate?',
   t('Overall Rating for supplier on this project');
   t('Proactiveness and Deligence in staffing');
   t('Project');
+  t('Project Manager');
   t('Project Manager(s)');
   t('Project(s) Involved');
   t('Resource Availability');
