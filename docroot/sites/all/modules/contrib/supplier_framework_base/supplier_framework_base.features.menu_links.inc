@@ -11,6 +11,46 @@
 function supplier_framework_base_menu_default_menu_links() {
   $menu_links = array();
 
+  // Exported menu link: management_resource-listing:resource-listing.
+  $menu_links['management_resource-listing:resource-listing'] = array(
+    'menu_name' => 'management',
+    'link_path' => 'resource-listing',
+    'router_path' => 'resource-listing',
+    'link_title' => 'Resource Listing',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'management_resource-listing:resource-listing',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+  );
+  // Exported menu link: management_supplier-listing:supplier-listing.
+  $menu_links['management_supplier-listing:supplier-listing'] = array(
+    'menu_name' => 'management',
+    'link_path' => 'supplier-listing',
+    'router_path' => 'supplier-listing',
+    'link_title' => 'Supplier Listing',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'management_supplier-listing:supplier-listing',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+  );
   // Exported menu link: menu-pm-menu_add-evaluation-interview-feedback:node/add/supplier-resource-evaluation-int.
   $menu_links['menu-pm-menu_add-evaluation-interview-feedback:node/add/supplier-resource-evaluation-int'] = array(
     'menu_name' => 'menu-pm-menu',
@@ -28,7 +68,7 @@ function supplier_framework_base_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -50,
     'customized' => 1,
   );
   // Exported menu link: menu-pm-menu_add-incident--escalation-log:node/add/incident-log.
@@ -48,7 +88,7 @@ function supplier_framework_base_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -49,
     'customized' => 1,
   );
   // Exported menu link: menu-pm-menu_add-resource-feedback:node/add/supplier-resource-feedback.
@@ -68,7 +108,7 @@ function supplier_framework_base_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -48,
     'customized' => 1,
   );
   // Exported menu link: menu-pm-menu_add-supplier-feedback:node/add/supplier-feedback.
@@ -88,7 +128,47 @@ function supplier_framework_base_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -47,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-pm-menu_resource-listing:resource-listing.
+  $menu_links['menu-pm-menu_resource-listing:resource-listing'] = array(
+    'menu_name' => 'menu-pm-menu',
+    'link_path' => 'resource-listing',
+    'router_path' => 'resource-listing',
+    'link_title' => 'Resource Listing',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'menu-pm-menu_resource-listing:resource-listing',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-pm-menu_supplier-listing:supplier-listing.
+  $menu_links['menu-pm-menu_supplier-listing:supplier-listing'] = array(
+    'menu_name' => 'menu-pm-menu',
+    'link_path' => 'supplier-listing',
+    'router_path' => 'supplier-listing',
+    'link_title' => 'Supplier Listing',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'menu-pm-menu_supplier-listing:supplier-listing',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
     'customized' => 1,
   );
 
@@ -98,6 +178,8 @@ function supplier_framework_base_menu_default_menu_links() {
   t('Add Incident / Escalation Log');
   t('Add Resource Feedback');
   t('Add Supplier Feedback');
+  t('Resource Listing');
+  t('Supplier Listing');
 
   return $menu_links;
 }

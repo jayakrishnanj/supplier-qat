@@ -1,0 +1,6 @@
+name = Supplier Monitoring
+description = Custom changes for supplier monitoring
+package = Views
+core = 7.x
+
+
