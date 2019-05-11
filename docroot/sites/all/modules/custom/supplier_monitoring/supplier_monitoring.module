@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+function supplier_monitoring_form_alter(&$form, &$form_state, $form_id) {
+    // Modify the view exposed filter Supplier textfield to select list.
+    if ( $form_id == 'views_exposed_form' ) {
+        $view = $form_state['view'];
+        if ($view->name == 'resource_listing' && $view->current_display == 'page') {
+          if (isset($form['supplier'])) {
+            // Query and fetch Supplier names.
+            $query = db_select('node', 'n')
+              ->fields('n', array('title'))
+              ->condition('n.type', 'supplier', '=');
+            $options = $query->execute()->fetchAllKeyed(0,0);
+
+            $form['supplier']['#type'] = 'select';
+            $form['supplier']['#options'] = ['' => 'All'] + $options;
+           // $form['supplier']['#default_value'] = 'All';
+            unset($form['supplier']['#size']);
+          }
+        }
+    }
+}
