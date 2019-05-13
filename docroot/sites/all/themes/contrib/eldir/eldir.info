@@ -5,6 +5,7 @@ core = 7.x
 engine = phptemplate
 
 stylesheets[all][] = style.css
+stylesheets[all][] = custom_style.css
 
 stylesheets-conditional[lt IE 7][all][] = ie6.css
 
