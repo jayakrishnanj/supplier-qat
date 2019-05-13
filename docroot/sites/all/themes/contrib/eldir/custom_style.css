@@ -1,0 +1,23 @@
+.view-resource-listing #edit-supplier {
+  width: 200px;
+  height: 28px;
+}
+.view-resource-listing .views-submit-button {
+  padding-top:14px;
+}
+.view-resource-listing td, .view-resource-listing th{
+  padding: 10px;
+}
+.node-type-supplier-resource fieldset{
+  background: none!important;
+  border:1px solid!important;
+}
+.inline-label .views-label, .node-supplier-resource .field-label {
+  float: left;
+  min-width:200px;
+  font-weight: bold;
+}
+.inline-label .views-field, .node-supplier-resource .field {
+  clear: both;
+  padding: 5px;
+}
