@@ -90,3 +90,8 @@ function eldir_preprocess_node(&$variables, $hook) {
     }
   }
 }
+
+function eldir_preprocess_views_view(&$vars) {
+    $view = $vars['view'];
+    $vars['title'] = filter_xss_admin($view->get_title());
+}
