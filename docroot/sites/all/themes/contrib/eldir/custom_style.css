@@ -2,22 +2,22 @@
   width: 200px;
   height: 28px;
 }
-.view-resource-listing .views-submit-button {
+.view-resource-listing .views-submit-button, .view-supplier-listing .views-submit-button {
   padding-top:14px;
 }
 .view-resource-listing td, .view-resource-listing th{
   padding: 10px;
 }
-.node-type-supplier-resource fieldset{
+.node-type-supplier-resource fieldset, .node-type-supplier fieldset{
   background: none!important;
   border:1px solid!important;
 }
-.inline-label .views-label, .node-supplier-resource .field-label {
+.inline-label .views-label, .node-supplier-resource .field-label,.node-type-supplier .field-label  {
   float: left;
-  min-width:200px;
+  min-width:250px;
   font-weight: bold;
 }
-.inline-label .views-field, .node-supplier-resource .field {
+.inline-label .views-field, .node-supplier-resource .field, .node-type-supplier .field {
   clear: both;
   padding: 5px;
 }
